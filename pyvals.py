@@ -13,11 +13,25 @@ from math import *
 import sys
 
 
+GLOBALS = {
+    "__builtins__": {},
+    **math.__dict__,
+    "abs": abs,
+    "min": min,
+    "max": max,
+    "sum": sum,
+}
+LOCALS = {}
+
+
 def main() -> None:
     """Fonction principale"""
+    arg_list = []
+    for arg in sys.argv[1:]:
+        arg_list.append(arg.replace("__", ""))
     try:
         print(Fore.CYAN + "Selon Yanik Sweeney", Fore.RESET,
-              eval(' '.join(sys.argv[1:]) or "None"))
+              eval(' '.join(arg_list) or "None", GLOBALS, LOCALS))
 
     except Exception as ex:
         print(Fore.RED, ex, file=sys.stderr, sep="")
@@ -25,4 +39,5 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+    colorama.init()
     main()
