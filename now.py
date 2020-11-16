@@ -11,20 +11,20 @@ import datetime
 def main() -> None:
     """Fonction principale"""
     now = datetime.datetime.now()
-    printElement("maintenant", now)
-    printElement("aujourd'hui", now.date())
+    print_elem("maintenant", now)
+    print_elem("aujourd'hui", now.date())
     deltat = datetime.timedelta(1)
-    printElement("demain", now.date() + deltat)
+    print_elem("demain", now.date() + deltat)
     deltat = datetime.timedelta(-2)
-    printElement("avant-hier", now.date() + deltat)
+    print_elem("avant-hier", now.date() + deltat)
     noel = "2020-12-25"
     noeldt = datetime.datetime.strptime(noel, "%Y-%m-%d")
-    printElement("noel", noeldt.date())
+    print_elem("noel", noeldt.date())
     noeldelta = noeldt - now
-    printElement("noel dans", f"{noeldelta.days} jours")
+    print_elem("noel dans", f"{noeldelta.days} jours")
 
 
-def printElement(cle, valeur) -> None:
+def print_elem(cle, valeur) -> None:
     """Print un ensemble cle: valeur"""
     print(f"{cle:>12}:", valeur)
 
